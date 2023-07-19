@@ -1,4 +1,5 @@
 <template lang="">
+<<<<<<< HEAD
     <div class="content flex-between">
         <div class="trending">
             <div class="subtitle">
@@ -9,16 +10,70 @@
             </div>
             <div class="count">
                 8,130 Tweets
+=======
+    <div class="title-box flex-between">
+         <div class="trend-title">
+            流行趨勢
+        </div>
+        <div class="settings">
+            <span class="material-icons-outlined">settings</span>
+        </div>
+    </div>
+    <div class="content flex-between" v-for="(item, index) in items" :key="index">
+        <div class="trending">
+            <!-- <div class="subtitle">
+                Trending in Turkey
+            </div> -->
+            <div class="tag">
+                {{ item.name }}
+            </div>
+            <div class="count">
+                {{ item.amount }} Tweets
+>>>>>>> dev
             </div>
         </div>
         <div class="tool">
             <span class="material-icons">keyboard_arrow_down</span>
         </div>
     </div>
+<<<<<<< HEAD
 </template>
 <script>
 export default {
 
+=======
+    <div class="show-more">Show More</div>
+</template>
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      items: [], // 存放動態的列表
+    };
+  },
+  mounted() {
+    // 在組件載入後，執行非同步行為獲取資料並匯入到items陣列中
+    // this.fetchData();
+  },
+  created() {
+    // 查詢流行趨勢的API
+        axios.get('/dyThreads/dyHotHashtag')
+            .then(response => {
+                // console.log(response.data);
+                if (response.data.data && response.data.data.length > 0) {
+                    this.items = this.items.concat(response.data.data);
+                } else {
+                    this.item = '找不到流行趨勢';
+                }
+            })
+            .catch(error => {
+                console.log('發生錯誤：', error);
+                this.item = '找不到流行趨勢';
+            });
+  },
+>>>>>>> dev
 }
 </script>
 <style lang="css" scoped>
@@ -26,6 +81,10 @@ export default {
     border-top: 1px solid lightgrey;
     border-bottom: 1px solid lightgrey;
     padding: 12px 24px;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+>>>>>>> dev
 }
 
 .trending div:not(:last-child) {
@@ -73,4 +132,43 @@ export default {
     text-align: left;
     color: #6E767D;
 }
+<<<<<<< HEAD
+=======
+
+.material-icons {
+    cursor: pointer;
+}
+
+.title-box {
+  height: 64.84px;
+  margin: 12px 24px;
+}
+
+.trend-title {
+  font-family: "Inter";
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.title-box .settings {
+  font-size: 26.91px;
+  color: var(--button-default);
+  cursor: pointer;
+}
+
+.show-more {
+  font-family: "SF Pro Text";
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #1da1f2;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+>>>>>>> dev
 </style>

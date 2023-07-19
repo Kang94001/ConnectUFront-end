@@ -8,4 +8,8 @@
 
 <style scoped>
 
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> dev
